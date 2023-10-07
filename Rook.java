@@ -1,15 +1,20 @@
 import java.util.*;
 
 public class Rook extends Piece {
-    public Rook(Color c) { throw new UnsupportedOperationException(); }
+    public Rook(Color c) { 
+        super(c);
+    }
     // implement appropriate methods
 
     public String toString() {
-	throw new UnsupportedOperationException();
+        if (this.color() == Color.WHITE) {
+            return "wr";
+        }
+        return "br";
     }
 
     public List<String> moves(Board b, String loc) {
-	throw new UnsupportedOperationException();
+        return rookMoves(b, loc);
     }
 
 }

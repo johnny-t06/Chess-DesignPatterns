@@ -1,15 +1,20 @@
 import java.util.*;
 
 public class Bishop extends Piece {
-    public Bishop(Color c) { throw new UnsupportedOperationException(); }
+    public Bishop(Color c) { 
+        super(c);
+    }
     // implement appropriate methods
 
     public String toString() {
-	throw new UnsupportedOperationException();
+        if (this.color() == Color.WHITE) {
+            return "wb";
+        }
+        return "bb";
     }
 
     public List<String> moves(Board b, String loc) {
-	throw new UnsupportedOperationException();
+	    return diaMoves(b, loc);
     }
 
 }
