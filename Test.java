@@ -73,7 +73,13 @@ public class Test {
         board.addPiece(Piece.createPiece("wp"), "d5");
         board.addPiece(Piece.createPiece("wp"), "e5");
         board.addPiece(Piece.createPiece("wk"), "e4");
+        assert board.getPiece("e4") != null;
 
+
+        List<String> kingMoves = board.getPiece("e4").moves(board, "e4");
+        for (String move : kingMoves) {
+            System.out.println(move);
+        }
         assert new HashSet<>(board.getPiece("e4").moves(board, "e4")).equals(Set.of("f5", "d4", "f4", "d3", "e3", "f3"));
     }
 

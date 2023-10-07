@@ -96,7 +96,7 @@ abstract public class Piece {
         Character type = name.charAt(1);
 
         PieceFactory pf = pfmap.get(type);
-        Piece newPiece = null;
+        Piece newPiece;
         Color color;
         if (colorChar == 'w') {
             color = Color.WHITE;
@@ -105,7 +105,7 @@ abstract public class Piece {
         }else{
             throw new RuntimeException();
         }
-        pf.create(color);
+        newPiece = pf.create(color);
         return newPiece;
     }
 

@@ -98,7 +98,7 @@ public class Board {
     public Piece getPiece(String loc) {
         int row = getIntfromChar(loc.charAt(1));
         int col = getIntfromChar(loc.charAt(0));
-        System.out.println("Row " + row + " Col " + col);
+
         return pieces[row][col];
 
     }

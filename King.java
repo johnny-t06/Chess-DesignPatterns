@@ -22,8 +22,8 @@ public class King extends Piece {
             -1, 0, 1
         };
         
-        int row = getIntfromChar(loc.charAt(0));
-        int col = getIntfromChar(loc.charAt(1));
+        int row = getIntfromChar(loc.charAt(1));
+        int col = getIntfromChar(loc.charAt(0));
         String checkMoves;
         for (int eachDirection : directions) {
             int newRow = row + eachDirection; 
