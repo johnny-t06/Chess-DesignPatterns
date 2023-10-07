@@ -92,7 +92,21 @@ abstract public class Piece {
     }
 
     public static Piece createPiece(String name) {
-        
+        Character colorChar = name.charAt(0);
+        Character type = name.charAt(1);
+
+        PieceFactory pf = pfmap.get(type);
+        Piece newPiece = null;
+        Color color;
+        if (colorChar == 'w') {
+            color = Color.WHITE;
+        }else if (colorChar == 'b') {
+            color = Color.BLACK;
+        }else{
+            throw new RuntimeException();
+        }
+        pf.create(color);
+        return newPiece;
     }
 
     
@@ -107,8 +121,8 @@ abstract public class Piece {
         };
 
 
-        int row = getIntfromChar(loc.charAt(0));
-        int col = getIntfromChar(loc.charAt(1));
+        int row = getIntfromChar(loc.charAt(1));
+        int col = getIntfromChar(loc.charAt(0));
         
         String checkMoves;
         for (int[] eachDirection : directions) {
@@ -145,15 +159,14 @@ abstract public class Piece {
             {0, 1},
             {0, -1}
         };
-        int row = getIntfromChar(loc.charAt(0));
-        int col = getIntfromChar(loc.charAt(1));
+        int row = getIntfromChar(loc.charAt(1));
+        int col = getIntfromChar(loc.charAt(0));
         String checkMoves; 
         for (int [] eachDirection: directions) {
             for (int i = 0; i < 8; i++) {
                 int newRow = row + eachDirection[0] * i;
                 int newCol = col + eachDirection[1] * i;
                 if (newRow < 8 && newRow >= 0 && newCol >= 0 && newCol < 8) {
-    
                     checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
                     Piece temp = b.getPiece(checkMoves);
                     if (temp == null) {
