@@ -27,9 +27,14 @@ public class King extends Piece {
         String checkMoves;
         for (int eachDirection : directions) {
             int newRow = row + eachDirection; 
-            int newCol = col + eachDirection; 
-            if (newRow < 8 && newRow >= 0 && newCol >= 0 && newCol < 8) {
-                checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
+
+            for (int againDirection : directions){
+                
+                int newCol = col + againDirection; 
+                if (newRow == row && newCol == col) {continue;}
+
+                if (newRow < 8 && newRow >= 0 && newCol >= 0 && newCol < 8) {
+                    checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
 
                 Piece temp = b.getPiece(checkMoves);
                 if (temp == null) {
@@ -37,6 +42,8 @@ public class King extends Piece {
                 }else if (temp.color() != this.color()) {
                     posMoves.add(checkMoves);
                 }
+            }
+            
             }
         }
         return posMoves;

@@ -76,11 +76,12 @@ public class Test {
         assert board.getPiece("e4") != null;
 
 
-        List<String> kingMoves = board.getPiece("e4").moves(board, "e4");
-        for (String move : kingMoves) {
-            System.out.println(move);
-        }
+        // List<String> kingMoves = board.getPiece("e4").moves(board, "e4");    prints all of king's moves
+        // for (String move : kingMoves) {
+        //     System.out.println(move);
+        // }    
         assert new HashSet<>(board.getPiece("e4").moves(board, "e4")).equals(Set.of("f5", "d4", "f4", "d3", "e3", "f3"));
+        board.clear();
     }
 
     public static void testWhiteBishops() {
@@ -90,7 +91,7 @@ public class Test {
 	    Piece p2 = Piece.createPiece("bb");
         b.addPiece(p, "a1");
         b.addPiece(p2, "h1");
-
+        b.clear();
     }
     public static void main(String[] args) {
 	// test1();
