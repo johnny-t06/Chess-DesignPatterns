@@ -31,7 +31,10 @@ public class Test {
         assert b.getPiece("a6") == p2;
 
         assert p.color() == Color.WHITE;
+        assert p.toString() == "wb";
         assert p2.color() == Color.WHITE;
+        assert p.toString() == "wb";
+        
         
         b.clear();
     }
@@ -64,6 +67,9 @@ public class Test {
 
         assert p.color() == Color.BLACK;
         assert p2.color() == Color.BLACK;
+        assert p.toString() == "bb";
+        assert p2.toString() == "bb";
+
 
 
         b.clear();
@@ -93,6 +99,9 @@ public class Test {
         // for (String eachMove : bishopMoves) {
         //     System.out.println(eachMove);
         // }    
+        assert p.toString() == "wb";
+        assert pawn1.toString() == "wp";
+        assert pawn2.toString() == "bp";
 
         assert new HashSet<>(b.getPiece("c3").moves(b, "c3")).equals(Set.of("a1", "b2", "b4", "d4", "d2", "e5"));
         b.clear();
@@ -132,7 +141,7 @@ public class Test {
             // System.out.println("Error Caught, No piece at first location");
             assert true;
         }
-        
+        assert p.toString() == "wk";
         assert p.color() == Color.WHITE;
         b.clear();
     }
@@ -164,14 +173,19 @@ public class Test {
         //     System.out.println(eachMove);
         // }    
         
+        assert p.toString() == "wq";
+
         assert new HashSet<>(b.getPiece("d2").moves(b, "d2")).equals(Set.of("c2", "b2", "e2", "f2", "g2", "h2", "c1", "d1", "e1", "e3", "f4", "c3", "b4", "a5", "d3", "d4", "d5"));
         b.clear();
+        
     }
     public static void test1() {
         Board b = Board.theBoard();
         Piece.registerPiece(new PawnFactory());
         Piece p = Piece.createPiece("bp");
+
         b.addPiece(p, "a3");
+        assert p.toString() == "bp";
         assert b.getPiece("a3") == p;
         b.clear();
     }
@@ -200,6 +214,8 @@ public class Test {
         
         assert p.color() == Color.WHITE;
         assert p2.color() == Color.WHITE;
+        assert p.toString() == "wr";
+        assert p2.toString() == "wr";
         b.clear();
     }
 
@@ -226,6 +242,8 @@ public class Test {
 
         assert p.color() == Color.BLACK;
         assert p2.color() == Color.BLACK;
+        assert p.toString() == "br";
+        assert p2.toString() == "br";
 
         b.clear();
     }
@@ -240,7 +258,6 @@ public class Test {
         board.addPiece(Piece.createPiece("wk"), "e4");
         assert board.getPiece("e4") != null;
 
-
         // List<String> kingMoves = board.getPiece("e4").moves(board, "e4");    prints all of king's moves
         // for (String move : kingMoves) {
         //     System.out.println(move);
@@ -254,9 +271,90 @@ public class Test {
 	    Piece.registerPiece(new RookFactory());
 	    Piece p = Piece.createPiece("wb");
 	    Piece p2 = Piece.createPiece("bb");
+        assert p.toString() == "wb";
+        assert p2.toString() == "bb";
         b.addPiece(p, "a1");
         b.addPiece(p2, "h1");
         b.clear();
+    }
+
+    public static void PawnMulti() {    //single move and double move 
+        Board b = Board.theBoard();
+	    Piece.registerPiece(new PawnFactory());
+	    Piece p = Piece.createPiece("wp");
+	    Piece p2 = Piece.createPiece("wp");
+	    Piece p3 = Piece.createPiece("bp");
+	    Piece p4 = Piece.createPiece("bp");
+
+        b.addPiece(p, "a2");
+        b.addPiece(p2, "b2");
+
+        b.addPiece(p3, "a7");
+        b.addPiece(p4, "b7");
+
+        // List<String> allMoves = b.getPiece("a2").moves(b, "a2");    //prints all of moves
+        // for (String eachMove : allMoves) {
+        //     System.out.println(eachMove);
+        // }    
+        b.movePiece("a2", "a3");
+        b.movePiece("a7", "a6");
+
+        assert new HashSet<>(b.getPiece("a3").moves(b, "a3")).equals(Set.of("a4"));
+        assert new HashSet<>(b.getPiece("a6").moves(b, "a6")).equals(Set.of("a5"));
+        assert new HashSet<>(b.getPiece("b2").moves(b, "b2")).equals(Set.of("b3", "b4"));
+        assert new HashSet<>(b.getPiece("b7").moves(b, "b7")).equals(Set.of("b6", "b5"));
+
+        b.clear();
+        
+    }
+    public static void PawnCapture() {
+        Board b = Board.theBoard();
+	    Piece.registerPiece(new PawnFactory());
+	    Piece p1 = Piece.createPiece("wp");
+	    Piece p2 = Piece.createPiece("bp");
+	    Piece p3 = Piece.createPiece("bp");
+	    Piece p4 = Piece.createPiece("bp");
+
+
+        b.addPiece(p1, "a2");
+        b.addPiece(p2, "b3");
+        b.addPiece(p3, "c3");
+        b.addPiece(p4, "c4");
+        
+        assert new HashSet<>(b.getPiece("a2").moves(b, "a2")).equals(Set.of("a3", "a4", "b3"));
+        b.movePiece("a2", "b3");
+        assert new HashSet<>(b.getPiece("b3").moves(b, "b3")).equals(Set.of("b4", "c4"));
+        assert p1.color() == Color.WHITE;
+        assert p2.color() == Color.BLACK;
+
+       
+        b.clear();
+        
+    }
+
+    public static void knightMoves() {
+        Board b = Board.theBoard();
+	    Piece.registerPiece(new KnightFactory());
+	    Piece.registerPiece(new PawnFactory());
+
+	    Piece p = Piece.createPiece("wn");
+	    Piece p2 = Piece.createPiece("wp");
+	    Piece p3 = Piece.createPiece("wp");
+	    Piece p4 = Piece.createPiece("bp");
+
+        b.addPiece(p, "d4");
+        b.addPiece(p2, "b3");
+
+        b.addPiece(p3, "e6");
+        b.addPiece(p4, "c2");
+
+        assert new HashSet<>(b.getPiece("d4").moves(b, "d4")).equals(Set.of("b5", "c2", "e2", "f3", "f5", "c6"));
+        
+        b.movePiece("d4", "e2");
+
+        assert new HashSet<>(b.getPiece("e2").moves(b, "e2")).equals(Set.of("d4", "c3", "c1", "g1", "g3", "f4"));
+        
+
     }
     public static void main(String[] args) {
         test1();
@@ -268,6 +366,9 @@ public class Test {
         whiteKing();
         BishopBlockedMulti();
         whiteQueenMulti();
+        PawnMulti();
+        PawnCapture();
+        knightMoves();
     }
 
 }

@@ -125,7 +125,7 @@ public class Board {
 
             List <String> moves = fromPiece.moves(this, from);
             
-
+            
             if (moves.contains(to) ) {
                 Piece toPiece = getPiece(to);
                 for (BoardListener eachListener : allListners) {

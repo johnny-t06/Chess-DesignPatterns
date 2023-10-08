@@ -16,8 +16,8 @@ public class Pawn extends Piece {
     public List<String> moves(Board b, String loc) {
         List<String> posMoves = new LinkedList<>();
         int moveAmount = (this.color() == Color.WHITE) ? -1 : 1;
-        int row = getIntfromChar(loc.charAt(0));
-        int col = getIntfromChar(loc.charAt(1));
+        int row = getIntfromChar(loc.charAt(1));
+        int col = getIntfromChar(loc.charAt(0));
         int newRow = row + moveAmount;
         int [] captureCol = {1, -1};
         String checkMoves;
@@ -30,12 +30,15 @@ public class Pawn extends Piece {
                 posMoves.add(checkMoves);
             }
             for (int cols : captureCol) {
-                int newCol = cols + col;    /// CHECK ADDITION 
-                checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
-                Piece captureTemp = b.getPiece(checkMoves);
-            if (captureTemp != null && this.color() != captureTemp.color()) {
-                posMoves.add(checkMoves);
-            }
+                int newCol = cols + col;    /// CHECK ADDITION FOR TOP RIGHT TOP LEFT
+                if (newCol < 8 && newCol >= 0) {
+
+                    checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
+                    Piece captureTemp = b.getPiece(checkMoves);
+                    if (captureTemp != null && this.color() != captureTemp.color()) {
+                        posMoves.add(checkMoves);
+                    }
+                }
             }
         }
 
