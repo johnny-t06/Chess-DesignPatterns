@@ -127,9 +127,10 @@ abstract public class Piece {
         String checkMoves;
         for (int[] eachDirection : directions) {
             for (int i = 0; i < 8; i++) {
-
+                
                 int newRow = row + eachDirection[0] * i;
                 int newCol = col + eachDirection[1] * i;
+                if (newRow == row && newCol == col) {continue; }
                 if (newRow < 8 && newRow >= 0 && newCol >= 0 && newCol < 8) {
     
                     checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
@@ -139,8 +140,8 @@ abstract public class Piece {
                     }else {
                         if (temp.color() != this.color()) {
                             posMoves.add(checkMoves);
-                            break;  //Can't jump over pieces
                         }
+                        break; //Can't jump over pieces
                     }
                 }else {
                     break;  //out of bounds loop 
@@ -166,6 +167,7 @@ abstract public class Piece {
             for (int i = 0; i < 8; i++) {
                 int newRow = row + eachDirection[0] * i;
                 int newCol = col + eachDirection[1] * i;
+                if (newRow == row && newCol == col) {continue;}
                 if (newRow < 8 && newRow >= 0 && newCol >= 0 && newCol < 8) {
                     checkMoves = colgetStringfromInt(newCol) + rowgetStringfromInt(newRow);
                     Piece temp = b.getPiece(checkMoves);
@@ -174,8 +176,9 @@ abstract public class Piece {
                     }else {
                         if (temp.color() != this.color()) {
                             posMoves.add(checkMoves);
-                            break;  //Can't jump over pieces
                         }
+                        break;  //Can't jump over pieces
+
                     }
                 }else {
                     break;  //out of loop 

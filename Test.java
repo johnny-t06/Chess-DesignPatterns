@@ -18,13 +18,12 @@ public class Test {
         b.movePiece("c1", "a3");
         b.movePiece("f1", "a6");
 
-        
+
+
         // List <String> posMoves = p.moves(b, "c1");
         // for (String eachMove : posMoves) {
         //     System.out.println(eachMove);
         // }
-
-
         assert b.getPiece("c1") == null;
         assert b.getPiece("f1") == null;
 
@@ -70,8 +69,104 @@ public class Test {
         b.clear();
     }
 
+    public static void BishopBlockedMulti() {
+        Board b = Board.theBoard();
+        Piece.registerPiece(new BishopFactory());
+        Piece.registerPiece(new PawnFactory());
+
+        Piece p = Piece.createPiece("wb");
+        Piece pawn1 = Piece.createPiece("wp");
+        Piece pawn2 = Piece.createPiece("bp");
+        Piece pawn3 = Piece.createPiece("wp");
+        Piece pawn4 = Piece.createPiece("bp");
+
+
+
+        b.addPiece(p, "c3");
+        b.addPiece(pawn1, "f6");
+        b.addPiece(pawn2, "d2");
+        b.addPiece(pawn3, "a5");
+        b.addPiece(pawn4, "e5");
+
+
+        // List<String> bishopMoves = b.getPiece("c3").moves(b, "c3");    //prints all of king's moves
+        // for (String eachMove : bishopMoves) {
+        //     System.out.println(eachMove);
+        // }    
+
+        assert new HashSet<>(b.getPiece("c3").moves(b, "c3")).equals(Set.of("a1", "b2", "b4", "d4", "d2", "e5"));
+        b.clear();
+
+    }
+
+
+    public static void whiteKing(){
+        Board b = Board.theBoard();
+        Piece.registerPiece(new KingFactory());
+        Piece p = Piece.createPiece("wk");
+
+        b.addPiece(p, "e1");
+
+        b.movePiece("e1", "e2");
+
+        assert b.getPiece("e1") == null;
+        assert b.getPiece("e2") == p;
+
+        b.movePiece("e2", "e3");
+
+        assert b.getPiece("e2") == null;
+        assert b.getPiece("e3") == p;
+
+        try {       //tries to move a piece with invalid piece
+            b.movePiece("e3", "e8");
+        }
+        catch (RuntimeException e) {
+            // System.out.println("Error Caught");
+            assert true;
+        }
+
+        try{
+            b.movePiece("h2", "e8");
+        }
+        catch (RuntimeException e) {
+            // System.out.println("Error Caught, No piece at first location");
+            assert true;
+        }
+        
+        assert p.color() == Color.WHITE;
+        b.clear();
+    }
     
 
+    public static void whiteQueenMulti() {
+        Board b = Board.theBoard();
+	    Piece.registerPiece(new QueenFactory());
+        Piece.registerPiece(new PawnFactory());
+
+        Piece pawn1 = Piece.createPiece("wp");
+        Piece pawn2 = Piece.createPiece("wp");
+        Piece pawn3 = Piece.createPiece("wp");
+        Piece pawn4 = Piece.createPiece("bp");
+        Piece pawn5 = Piece.createPiece("bp");
+
+
+	    Piece p = Piece.createPiece("wq");
+
+        b.addPiece(p, "d2");
+        b.addPiece(pawn1, "d6");
+        b.addPiece(pawn2, "a2");
+        b.addPiece(pawn3, "g5");
+        b.addPiece(pawn4, "f4");
+        b.addPiece(pawn5, "d1");
+
+        // List<String> Moves = b.getPiece("d2").moves(b, "d2");    //prints all of king's moves
+        // for (String eachMove : Moves) {
+        //     System.out.println(eachMove);
+        // }    
+        
+        assert new HashSet<>(b.getPiece("d2").moves(b, "d2")).equals(Set.of("c2", "b2", "e2", "f2", "g2", "h2", "c1", "d1", "e1", "e3", "f4", "c3", "b4", "a5", "d3", "d4", "d5"));
+        b.clear();
+    }
     public static void test1() {
         Board b = Board.theBoard();
         Piece.registerPiece(new PawnFactory());
@@ -164,12 +259,15 @@ public class Test {
         b.clear();
     }
     public static void main(String[] args) {
-	test1();
-    testWhiteRooks();
-    testBlackRooks();
-    testKingMove();
-    whiteBishop();
-    blackBishop();
+        test1();
+        testWhiteRooks();
+        testBlackRooks();
+        testKingMove();
+        whiteBishop();
+        blackBishop();
+        whiteKing();
+        BishopBlockedMulti();
+        whiteQueenMulti();
     }
 
 }

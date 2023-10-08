@@ -114,7 +114,8 @@ public class Board {
     }
 
     public void movePiece(String from, String to) {
-        Piece fromPiece = getPiece(from);    //handles exceptions throwing if from doesn't exist
+        Piece fromPiece = getPiece(from);    //handles exceptions throwing if from is not within bounds
+
         if (fromPiece != null) {
             int rowFrom = getIntfromChar(from.charAt(1)); 
             int colFrom = getIntfromChar(from.charAt(0)); 
@@ -139,10 +140,13 @@ public class Board {
                     }
                 }
                 
+            }else {
+                throw new RuntimeException();
             }
-            
-
+        }else {
+            throw new RuntimeException();   //handles exeception when no piece at first location
         }
+        
         
     }
 
