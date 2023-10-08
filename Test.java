@@ -6,14 +6,79 @@ public class Test {
     // with assertions disabled, the default, then assert statements
     // will not execute!)
 
+    public static void whiteBishop(){
+        Board b = Board.theBoard();
+        Piece.registerPiece(new BishopFactory());
+        Piece p = Piece.createPiece("wb");
+	    Piece p2 = Piece.createPiece("wb");
+
+        b.addPiece(p, "c1");
+        b.addPiece(p2, "f1");
+        
+        b.movePiece("c1", "a3");
+        b.movePiece("f1", "a6");
+
+        
+        // List <String> posMoves = p.moves(b, "c1");
+        // for (String eachMove : posMoves) {
+        //     System.out.println(eachMove);
+        // }
+
+
+        assert b.getPiece("c1") == null;
+        assert b.getPiece("f1") == null;
+
+        assert b.getPiece("a3") == p;
+        assert b.getPiece("a6") == p2;
+
+        assert p.color() == Color.WHITE;
+        assert p2.color() == Color.WHITE;
+        
+        b.clear();
+    }
+
+    public static void blackBishop(){
+        Board b = Board.theBoard();
+        Piece.registerPiece(new BishopFactory());
+        Piece p = Piece.createPiece("bb");
+	    Piece p2 = Piece.createPiece("bb");
+
+        b.addPiece(p, "g7");
+        b.addPiece(p2, "b7");
+        
+        b.movePiece("g7", "h8");
+        b.movePiece("b7", "d5");
+
+        
+        // List <String> posMoves = p.moves(b, "g7");
+        // for (String eachMove : posMoves) {
+        //     System.out.println(eachMove);
+        // }
+
+
+        assert b.getPiece("g7") == null;
+        assert b.getPiece("b7") == null;
+
+        assert b.getPiece("h8") == p;
+        assert b.getPiece("d5") == p2;
+
+
+        assert p.color() == Color.BLACK;
+        assert p2.color() == Color.BLACK;
+
+
+        b.clear();
+    }
+
+    
 
     public static void test1() {
-	Board b = Board.theBoard();
-	Piece.registerPiece(new PawnFactory());
-	Piece p = Piece.createPiece("bp");
-	b.addPiece(p, "a3");
-	assert b.getPiece("a3") == p;
-    b.clear();
+        Board b = Board.theBoard();
+        Piece.registerPiece(new PawnFactory());
+        Piece p = Piece.createPiece("bp");
+        b.addPiece(p, "a3");
+        assert b.getPiece("a3") == p;
+        b.clear();
     }
     
     public static void testWhiteRooks () {
@@ -37,15 +102,17 @@ public class Test {
         
         assert b.getPiece("a5") == p;
         assert b.getPiece("h7") == p2;
-
+        
+        assert p.color() == Color.WHITE;
+        assert p2.color() == Color.WHITE;
         b.clear();
     }
 
     public static void testBlackRooks () {
         Board b = Board.theBoard();
 	    Piece.registerPiece(new RookFactory());
-	    Piece p = Piece.createPiece("wr");
-	    Piece p2 = Piece.createPiece("wr");
+	    Piece p = Piece.createPiece("br");
+	    Piece p2 = Piece.createPiece("br");
 
         b.addPiece(p, "a1");
         b.addPiece(p2, "h1");
@@ -61,6 +128,9 @@ public class Test {
         
         assert b.getPiece("a5") == p;
         assert b.getPiece("h7") == p2;
+
+        assert p.color() == Color.BLACK;
+        assert p2.color() == Color.BLACK;
 
         b.clear();
     }
@@ -94,11 +164,12 @@ public class Test {
         b.clear();
     }
     public static void main(String[] args) {
-	// test1();
-    // testWhiteRooks();
-    // testBlackRooks();
+	test1();
+    testWhiteRooks();
+    testBlackRooks();
     testKingMove();
-
+    whiteBishop();
+    blackBishop();
     }
 
 }

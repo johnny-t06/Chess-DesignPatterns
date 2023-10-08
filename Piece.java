@@ -143,7 +143,7 @@ abstract public class Piece {
                         }
                     }
                 }else {
-                    break;  //out of loop 
+                    break;  //out of bounds loop 
                 }
                 
             }
