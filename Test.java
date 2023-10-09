@@ -357,18 +357,18 @@ public class Test {
 
     }
     public static void main(String[] args) {
-        test1();
-        testWhiteRooks();
-        testBlackRooks();
-        testKingMove();
-        whiteBishop();
-        blackBishop();
-        whiteKing();
-        BishopBlockedMulti();
-        whiteQueenMulti();
-        PawnMulti();
-        PawnCapture();
-        knightMoves();
+        // test1();
+        // testWhiteRooks();
+        // testBlackRooks();
+        // testKingMove();
+        // whiteBishop();
+        // blackBishop();
+        // whiteKing();
+        // BishopBlockedMulti();
+        // whiteQueenMulti();
+        // PawnMulti();
+        // PawnCapture();
+        // knightMoves();
     }
 
 }

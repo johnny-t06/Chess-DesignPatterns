@@ -163,6 +163,9 @@ public class Board {
     }
 
     public void removeListener(BoardListener bl) {
+        if(!allListners.contains(bl)) {
+            throw new RuntimeException();
+        }
         allListners.remove(bl);
     }
 
