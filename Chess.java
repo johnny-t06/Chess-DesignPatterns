@@ -1,3 +1,11 @@
+/*
+ * CS121 Project 2: Design Patterns with Chess
+ * Author: Johnny Tan
+ * Date: 10/6/2023
+ */
+
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
