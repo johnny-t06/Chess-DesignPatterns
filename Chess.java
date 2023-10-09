@@ -67,28 +67,32 @@ public class Chess {
 		while ((lineHolder = layoutReader.readLine()) != null) {
 			if (lineHolder.charAt(0) != '#') {
 				column = lineHolder.charAt(0);
-				row = lineHolder.charAt(1);		//skip 
+				row = lineHolder.charAt(1);		//skip the = in At(2)
 				color = lineHolder.charAt(3);
 				pieceType = lineHolder.charAt(4);
 				if (validColumn.contains(column) && validRow.contains(row) && validColor.contains(color) && validPiece.contains(pieceType)) {
-					String location = lineHolder.substring(0, 1);
-					String fullPiece = lineHolder.substring(3, 4);
+					String location = lineHolder.substring(0, 2);
+					String fullPiece = lineHolder.substring(3);
+
 					Board.theBoard().addPiece(Piece.createPiece(fullPiece), location);
 				}else {
 					throw new RuntimeException();
 				}
 			}
 		}
+
 		while ((lineHolder = movesReader.readLine()) != null) {
 			if (lineHolder.charAt(0) != '#') {
-				column = lineHolder.charAt(0);
-				row = lineHolder.charAt(1);		//skip 
-				color = lineHolder.charAt(3);
-				pieceType = lineHolder.charAt(4);
-				if (validColumn.contains(column) && validRow.contains(row) && validColor.contains(color) && validPiece.contains(pieceType)) {
-					String location = lineHolder.substring(0, 1);
-					String fullPiece = lineHolder.substring(3, 4);
-					Board.theBoard().addPiece(Piece.createPiece(fullPiece), location);
+				char movesCol1 = lineHolder.charAt(0);
+				char movesCol2 = lineHolder.charAt(3);
+
+				char movesRow1 = lineHolder.charAt(1);		//skip the hypen in At(2)
+				char movesRow2 = lineHolder.charAt(4);
+
+				if (validColumn.contains(movesCol1) && validColumn.contains(movesCol2) && validRow.contains(movesRow1) && validRow.contains(movesRow2)) {
+					String fromLoc = lineHolder.substring(0, 2);
+					String toLoc = lineHolder.substring(3);
+					Board.theBoard().movePiece(fromLoc, toLoc);
 				}else {
 					throw new RuntimeException();
 				}
