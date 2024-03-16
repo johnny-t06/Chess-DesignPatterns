@@ -1,4 +1,14 @@
+package Pieces;
+/*
+ * File: King.java
+ * Author: Johnny Tan
+ * Date: 03/15/2024
+ * Purpose: Extends Piece to account for king moves
+ */
 import java.util.*;
+
+import Board;
+import Color;
 
 public class King extends Piece {
     public King(Color c) { 

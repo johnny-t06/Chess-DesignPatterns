@@ -1,10 +1,20 @@
+package Pieces;
+/*
+ * File: Knight.java
+ * Author: Johnny Tan
+ * Date: 03/15/2024
+ * Purpose: Extends Piece to account for Knight moves
+ */
+
 import java.util.*;
+
+import Board;
+import Color;
 
 public class Knight extends Piece {
     public Knight(Color c) { 
         super(c);
     }
-    // implement appropriate methods
 
     public String toString() {
         if (this.color() == Color.WHITE) {

@@ -1,5 +1,7 @@
 import java.util.*;
 
+import Pieces.Piece;
+
 public class Test {
 
     // Run "java -ea Test" to run with assertions enabled (If you run

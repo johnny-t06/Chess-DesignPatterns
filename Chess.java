@@ -1,9 +1,9 @@
 /*
- * CS121 Project 2: Design Patterns with Chess
+ * File: Chess.java
  * Author: Johnny Tan
- * Date: 10/6/2023
+ * Date: 03/15/2024
+ * Purpose: Handles file input and output data
  */
-
 
 
 import java.io.BufferedReader;
@@ -62,15 +62,12 @@ public class Chess {
 		Piece.registerPiece(new RookFactory());
 		Piece.registerPiece(new PawnFactory());
 		Board.theBoard().registerListener(new Logger());
-	// args[0] is the layout file name
-	// args[1] is the moves file name
-	// Put your code to read the layout file and moves files
-	// here.
+
 
 	try {
 		BufferedReader layoutReader = new BufferedReader(new FileReader(args[0]));
 		BufferedReader movesReader = new BufferedReader(new FileReader(args[1]));
-		String lineHolder;		//change readline?
+		String lineHolder;		
 		char column, row, color, pieceType;
 		while ((lineHolder = layoutReader.readLine()) != null) {
 			if (lineHolder.charAt(0) != '#') {
