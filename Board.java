@@ -1,3 +1,10 @@
+/*
+ * File: Board.java
+ * Author: Johnny Tan
+ * Date: 03/15/2024
+ * Purpose: Handles pieces on board, piece actions, listeners
+ */
+
 import java.util.*;
 import java.lang.RuntimeException;
 
@@ -92,8 +99,7 @@ public class Board {
     }
 
 
-    // Returns piece at given loc or null if no such piece
-    // exists
+    // Returns piece at given loc or null if no such piece exists
     public Piece getPiece(String loc) {
         int row = getIntfromChar(loc.charAt(1));
         int col = getIntfromChar(loc.charAt(0));
